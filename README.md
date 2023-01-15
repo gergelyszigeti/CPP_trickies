@@ -5,7 +5,7 @@ As a former research engineer, who worked a lot with histograms, was pretty cour
 
 I wrote a simple algorithm for this, that sorts the bars as a preparitory step from the tallest to the shortest.
 It is `O(log(b))` in complexity, where `b` is the number of bars.
-Then, I take each bar in this order, and if there is no water already to the right from the bar, I pour some to the tallest neighbor bar to the right. The water level is always the height of the smaller bar of the two. Sometimes it is so low, that even a taller bar can stop it before the tallest neigbour to the right. Then I stop the pouring at that bar.
+Then, I take each bar in this order, and if there is no water already to the right of the bar, I pour some until the tallest neighbor bar to the right. The water level is always the height of the smaller bar of the two. Sometimes it is so low, that even a taller bar can stop it before the tallest neigbor to the right. Then I stop the pouring at that bar.
 It is `O(n - db)` in complexity, where `n` is the length of the histogram (number of bars with the number of spaces between bars), `db` is the number of 'dry' bars (bars are not under water). All places are visited only once.
 
 After typing `make` on Linux, MacOs terminal, or Cygwin, the program can be used by typing `./WaterOnBars`. It will show you ten experiments with various looking histogram pairs, similars to this one:
