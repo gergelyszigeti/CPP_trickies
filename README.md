@@ -25,10 +25,9 @@ After typing `make` on Linux, MacOs terminal, or Cygwin, the program can be used
 
 > Note: here in this example `b` is 11, `n` is 25, `db` is 8 as we have 3 bars under water.
 
-##### (this part below is not yet implemented)
-
 You can set the number of experiments by giving a number as the first argument:
+
 `./WaterOnBars 10000 > bars.txt`
 
-Note, that although you can get 10 000 histograms in a fraction of a second, it would flood your screen for long kilometers, that is why an output txt file is used. The example was shown above will also be found in the txt file.
+Note, that although you can get 10 000 histograms in a fraction of a second, it would flood your screen for long kilometers, that is why an output txt file is used. The example was shown above will also be found in the output txt file.
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <string>
 
 using bar_type = int;
 int randstate = 19790327;
@@ -100,9 +101,12 @@ std::vector<T> PourWaterOnBars(const std::vector<T>& bars)
     return water;
 }
 
-int main()
+int main(int argc, char* argv[])
 {
-    for (int i = 0; i < 10; i++) {
+    int count = 10;
+    if (argc == 2) { count = std::stoi(argv[1]); }
+
+    for (int i = 0; i < count; i++) {
         auto bars  = GenerateRandomBars<bar_type>();
         auto water = PourWaterOnBars(bars);
         ShowBarsWithoutAndWithWater(bars, water);
