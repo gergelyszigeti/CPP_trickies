@@ -21,7 +21,7 @@ std::vector<T> GenerateRandomBars(int minlength = 20, int maxlength = 40,
         // totally random bars look bad, therefore I limit the number of tall bars
         bars[i] = myRand() % ( tallBarCount ? tallestBar : tallThres );
         tallBarCount -= static_cast<T>(bars[i] > tallThres);
-        
+
         i += myRand() % maxSpaceLength;
     }
     // Note, sometimes the vector ends with 0 (no bar), while the very first
@@ -54,8 +54,8 @@ std::vector<T> PourWaterOnBars(const std::vector<T>& bars)
 {
     std::vector<T> water(bars.size());  // this will be our return,
                                         // water level for each position
-    
-    // Sort bars by height (tall -> short), sort with their places (indices) 
+
+    // Sort bars by height (tall -> short), sort with their places (indices)
     // COMPLEXITY: this part is O(log(b)), where b is the number of bars
     std::vector<std::pair<int, T>> barsWithPlaces; barsWithPlaces.reserve(bars.size());
     for (int i = 0; i < bars.size(); ++i) {
@@ -63,8 +63,8 @@ std::vector<T> PourWaterOnBars(const std::vector<T>& bars)
         if (bars[i]) { barsWithPlaces.emplace_back(i, bars[i]); };
     }
     std::sort(barsWithPlaces.begin(), barsWithPlaces.end(),
-              [](auto& a, auto& b) { return a.second > b.second; }); 
-    
+              [](auto& a, auto& b) { return a.second > b.second; });
+
     // From now on, we only need the places (indices) of sorted bars
     // NOTE: this vector below is not really needed, the vector above
     // could have been used, with its first item of each pair only
