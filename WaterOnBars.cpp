@@ -39,7 +39,7 @@ void ShowBarsWithoutAndWithWater(const std::vector<T>& bars,
     auto height = *std::max_element(bars.begin(), bars.end()); // tallest bar
     auto y = height; while (y --> 0) {          // y goes down (top to bottom)
 	for(bool showWithWater: {false, true}) {
-            for(auto x = 0; x < width; ++x) {   // x goes from left to right
+            for(auto x = 0; x < width; x++) {   // x goes from left to right
 	        std::cout <<                    // show one line
                     ( y <  bars[x] ? "|" :
     (showWithWater && y < water[x])? "o" :      // sorry if you find this line ugly
@@ -59,7 +59,7 @@ std::vector<T> PourWaterOnBars(const std::vector<T>& bars)
     // Sort bars by height (tall -> short), sort with their places (indices)
     // COMPLEXITY: this part is O(log(b)), where b is the number of bars
     std::vector<std::pair<int, T>> barsWithPlaces; barsWithPlaces.reserve(bars.size());
-    for (int i = 0; i < bars.size(); ++i) {
+    for (int i = 0; i < bars.size(); i++) {
         // note: bars[] also have the spaces between bars, bars[i] = 0 there
         if (bars[i]) { barsWithPlaces.emplace_back(i, bars[i]); };
     }
