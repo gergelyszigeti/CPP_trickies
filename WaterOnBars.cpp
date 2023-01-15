@@ -20,7 +20,7 @@ std::vector<T> GenerateRandomBars(int minlength = 20, int maxlength = 40,
     for (int i = 0; i < length; i++) {
         // totally random bars look bad, therefore I limit the number of tall bars
         bars[i] = myRand() % ( tallBarCount ? tallestBar : tallThres );
-        tallBarCount -= static_cast<T>(bars[i] > tallThres);
+        tallBarCount -= static_cast<int>(bars[i] > tallThres);
 
         i += myRand() % maxSpaceLength;
     }
