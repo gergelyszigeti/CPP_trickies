@@ -79,7 +79,8 @@ std::vector<T> PourWaterOnBars(const std::vector<T>& bars)
     // places where water will be poured (each place is visited only once)
     for (auto& barPlace: orderedBarPlaces) {
         // If there is no already water to the right, we can pour it there
-        // To guess the water level, let's find the tallest bar to the right
+        // To guess the level and the other end of water,
+        // let's find the tallest bar to the right
         if (barPlace != bars.size() - 1 && water[barPlace + 1] == 0) {
             // We can find the place (r) of the tallest bar to the right easily
             // with a very short while loop
