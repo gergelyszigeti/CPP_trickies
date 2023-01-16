@@ -3,12 +3,12 @@
 #include <algorithm>
 #include <string>
 
-using bar_type = int;
+using bar_type = unsigned int;
 int randstate = 19790327;
 
 template<typename T>
 std::vector<T> GenerateRandomBars(int minlength = 20, int maxlength = 40,
-                 int tallestBar = 10, int tallThres = 6, int tallBarCount = 3,
+                 T tallestBar = 10, T tallThres = 6, int tallBarCount = 3,
                  int maxSpaceLength = 4)
 {
     // Unfortunately rand() was quite crappy on my MacBook Air, let me use
@@ -39,7 +39,7 @@ void ShowBarsWithoutAndWithWater(const std::vector<T>& bars,
     auto height = *std::max_element(bars.begin(), bars.end()); // tallest bar
     auto y = height; while (y --> 0) {          // y goes down (top to bottom)
 	for(bool showWithWater: {false, true}) {
-            for(auto x = 0; x < width; x++) {   // x goes from left to right
+            for(size_t x = 0; x < width; x++) {   // x goes from left to right
 	        std::cout <<                    // show one line
                     ( y <  bars[x] ? "|" :
     (showWithWater && y < water[x])? "o" :      // sorry if you find this line ugly
@@ -59,7 +59,7 @@ std::vector<T> PourWaterOnBars(const std::vector<T>& bars)
     // Sort bars by height (tall -> short), sort with their places (indices)
     // COMPLEXITY: this part is O(log(b)), where b is the number of bars
     std::vector<std::pair<int, T>> barsWithPlaces; barsWithPlaces.reserve(bars.size());
-    for (int i = 0; i < bars.size(); i++) {
+    for (size_t i = 0; i < bars.size(); i++) {
         // note: bars[] also have the spaces between bars, bars[i] = 0 there
         if (bars[i]) { barsWithPlaces.emplace_back(i, bars[i]); };
     }
@@ -83,7 +83,7 @@ std::vector<T> PourWaterOnBars(const std::vector<T>& bars)
         if (barPlace != bars.size() - 1 && water[barPlace + 1] == 0) {
             // We can find the place (r) of the tallest bar to the right easily
             // with a very short while loop
-            int r = 0;
+            size_t r = 0;
             while(   r < orderedBarPlaces.size()
                   && orderedBarPlaces[r] <= barPlace) { r++; }
             if (r != orderedBarPlaces.size()) {
@@ -91,7 +91,7 @@ std::vector<T> PourWaterOnBars(const std::vector<T>& bars)
                 // or the height of the tallest neighbor to the right
                 T waterLevel = std::min(bars[barPlace], bars[orderedBarPlaces[r]]);
                 // Pour water to the right as long as possible
-                for (int i = barPlace + 1; i < orderedBarPlaces[r]; i++) {
+                for (auto i = barPlace + 1; i < orderedBarPlaces[r]; i++) {
                     if (bars[i] > waterLevel) { break; }
                     water[i] = waterLevel;
                 }
