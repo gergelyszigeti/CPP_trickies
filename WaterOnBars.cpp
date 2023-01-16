@@ -25,9 +25,8 @@ std::vector<T> GenerateRandomBars(int minlength = 20, int maxlength = 40,
 
         i += myRand() % maxSpaceLength;
     }
-    // Note, sometimes the vector ends with 0 (no bar), while the very first
-    // element is always a bar; no problem, the algorithm can handle it B)
-    // ( see "else branch here:" comment in PourWaterOnBars() )
+    // Note, many times the vector ends with 0 (no bar), while the very first
+    // element is almost always a bar; no problem, the algorithm can handle it B)
     return bars;
 }
 
